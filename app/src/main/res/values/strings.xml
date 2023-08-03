@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">WhatsAppClone</string>
+    <string name="whatsapp_logo">WhatsApp Logo</string>
+    <string name="user_name">User Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="already_have_account">Already have account</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="google">Google</string>
+    <string name="facebook">Facebook</string>
+    <string name="sign_up_with_phone">Sign Up with phone</string>
+    <string name="signin_whatsapp_logo">SignIn Whatsapp Logo</string>
+    <string name="SignIn_Email">Email</string>
+    <string name="SingInpassword">Password</string>
+    <string name="click_for_sign_up">Click for Sign Up</string>
+    <string name="sign_in">Sign In</string>
+    <string name="SignIngoogle">Google</string>
+    <string name="SignInfacebook">Facebook</string>
+    <string name="SignIn_sign_up_with_phone">Sign up with phone</string>
+    <string name="web_client_id">49159876918-1jjd2v6ua81emd23arfn75b9lenisjtu.apps.googleusercontent.com</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+</resources>
