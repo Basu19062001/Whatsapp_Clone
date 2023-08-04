@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.example.whatsappclone.Adapters.UserAdapderInChats;
 import com.example.whatsappclone.Models.Users;
 import com.example.whatsappclone.databinding.FragmentChatsBinding;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -24,9 +25,11 @@ import java.util.ArrayList;
 public class ChatsFragment extends Fragment {
 
     //For binding
-    @NonNull FragmentChatsBinding binding;
+    @NonNull
+    FragmentChatsBinding binding;
     ArrayList<Users> list;
     FirebaseDatabase database;
+
     public ChatsFragment() {
         // Required empty public constructor
     }
@@ -43,20 +46,22 @@ public class ChatsFragment extends Fragment {
         //Object of ArrayList class
         list = new ArrayList<>();
 
-        UserAdapderInChats adapderInChats = new UserAdapderInChats(list,getContext());
+        UserAdapderInChats adapderInChats = new UserAdapderInChats(list, getContext());
         binding.chatsRecyclerView.setAdapter(adapderInChats);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         binding.chatsRecyclerView.setLayoutManager(layoutManager);
         //get user info from firebase database
-       database.getReference().child("Users").addValueEventListener(new ValueEventListener() {
+        database.getReference().child("Users").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-               list.clear();
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                list.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Users users = dataSnapshot.getValue(Users.class);
                     users.setUserId(dataSnapshot.getKey());
-                    list.add(users);
+                    //Sender hide
+                    if (!users.getUserId().equals(FirebaseAuth.getInstance().getUid()))
+                        list.add(users);
                 }
                 adapderInChats.notifyDataSetChanged();
             }
