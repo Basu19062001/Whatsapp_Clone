@@ -28,6 +28,7 @@ public class ChatsDetailsAcitivity extends AppCompatActivity {
     ActivityChatsDetailsAcitivityBinding binding;
     FirebaseDatabase database;
     FirebaseAuth auth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,42 +54,43 @@ public class ChatsDetailsAcitivity extends AppCompatActivity {
         binding.backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
         });
 
         final ArrayList<MessageModel> messageModelArrayList = new ArrayList<>();
-        final ChatAdapter chatAdapter = new ChatAdapter(messageModelArrayList,this);
+        final ChatAdapter chatAdapter = new ChatAdapter(messageModelArrayList, this, receiverId);
 
         binding.chatsRecyclerView.setAdapter(chatAdapter);
 
         binding.chatsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         //sender child
-        final String senderRoom  = senderId + receiverId;
+        final String senderRoom = senderId + receiverId;
         //receiver child
         final String receiverRoom = receiverId + senderId;
 
-       //Retrieve messages from firebase database
+        //Retrieve messages from firebase database
         database.getReference().child("Chats")
                 .child(senderRoom)
                 .addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                               messageModelArrayList.clear();
-                                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                                    MessageModel chatsmodel = dataSnapshot.getValue(MessageModel.class);
-                                    messageModelArrayList.add(chatsmodel);
-                                }
-                                chatAdapter.notifyDataSetChanged();
-                            }
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        messageModelArrayList.clear();
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                            MessageModel chatsmodel = dataSnapshot.getValue(MessageModel.class);
+                            chatsmodel.setMessageUserId(dataSnapshot.getKey());
+                            messageModelArrayList.add(chatsmodel);
+                        }
+                        chatAdapter.notifyDataSetChanged();
+                    }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                            }
-                        });
+                    }
+                });
 
 
         //For chatting
@@ -96,7 +98,7 @@ public class ChatsDetailsAcitivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String message = binding.edtMessage.getText().toString();
-                final MessageModel messageModel = new MessageModel(senderId,message);
+                final MessageModel messageModel = new MessageModel(senderId, message);
                 messageModel.setTimestamp(new Date().getTime());
                 binding.edtMessage.setText("");
 
@@ -123,10 +125,6 @@ public class ChatsDetailsAcitivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
 
 
     }
