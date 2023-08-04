@@ -1,15 +1,16 @@
 package com.example.whatsappclone.Models;
 
 public class Users {
-    String profilePic, userName, userEmail, userPassword,userId, lastMessage;
+    String profilePic, userName, userEmail, userPassword,userId, lastMessage,about;
 
-    public Users(String profilePic, String userName, String userEmail, String userPassword, String userId, String lastMessage) {
+    public Users(String profilePic, String userName, String userEmail, String userPassword, String userId, String lastMessage, String about) {
         this.profilePic = profilePic;
         this.userName = userName;
         this.userEmail = userEmail;
         this.userPassword = userPassword;
         this.userId = userId;
         this.lastMessage = lastMessage;
+        this.about = about;
     }
     public Users(){}
 
@@ -18,6 +19,14 @@ public class Users {
         this.userName = userName;
         this.userEmail  = userEmail;
         this.userPassword = userPassword;
+    }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
     }
 
     public String getUserId() {

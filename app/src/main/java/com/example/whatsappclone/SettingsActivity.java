@@ -23,6 +23,8 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
+
 public class SettingsActivity extends AppCompatActivity {
 
     //Binding
@@ -55,6 +57,27 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+        //For save user name and about
+        binding.btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String userName = binding.edtUserName.getText().toString();
+                String about = binding.edtStatus.getText().toString();
+
+                //Update value on firebase database
+                HashMap<String,Object> obj = new HashMap<>();
+                obj.put("userName",userName);
+                obj.put("about",about);
+
+                //insert data into database
+                database.getReference().child("Users")
+                        .child(auth.getUid())
+                        .updateChildren(obj);
+                Toast.makeText(SettingsActivity.this, "Profile updated", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
         //Image get from firebase
         database.getReference().child("Users")
                 .child(FirebaseAuth.getInstance().getUid())
@@ -65,6 +88,10 @@ public class SettingsActivity extends AppCompatActivity {
                         Picasso.get().load(users.getProfilePic())
                                 .placeholder(R.drawable.user)
                                 .into(binding.profileImage);
+
+                        //set into settingsActivity
+                        binding.edtUserName.setText(users.getUserName());
+                        binding.edtStatus.setText(users.getAbout());
                     }
 
                     @Override
