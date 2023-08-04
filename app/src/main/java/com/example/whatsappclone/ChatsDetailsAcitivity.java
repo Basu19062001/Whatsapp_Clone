@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.whatsappclone.Adapters.ChatAdapter;
 import com.example.whatsappclone.Models.MessageModel;
@@ -97,6 +98,10 @@ public class ChatsDetailsAcitivity extends AppCompatActivity {
         binding.send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(binding.edtMessage.getText().toString().isEmpty()){
+                    Toast.makeText(ChatsDetailsAcitivity.this, "Can't send empty message", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 String message = binding.edtMessage.getText().toString();
                 final MessageModel messageModel = new MessageModel(senderId, message);
                 messageModel.setTimestamp(new Date().getTime());

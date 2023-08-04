@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.whatsappclone.Adapters.ChatAdapter;
 import com.example.whatsappclone.Models.MessageModel;
@@ -76,6 +77,10 @@ public class GroupChatActivity extends AppCompatActivity {
         binding.send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (binding.edtMessage.getText().toString().isEmpty()) {
+                    Toast.makeText(GroupChatActivity.this, "Can't send empty message", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 final String message = binding.edtMessage.getText().toString();
                 final MessageModel model = new MessageModel(senderId,message);
                 model.setTimestamp(new Date().getTime());
