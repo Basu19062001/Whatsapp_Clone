@@ -51,6 +51,8 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     //get image from online
     implementation 'com.squareup.picasso:picasso:2.8'
+    //For image store into firebase
+    implementation 'com.google.firebase:firebase-storage:20.0.1'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
