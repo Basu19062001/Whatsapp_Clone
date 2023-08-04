@@ -51,6 +51,18 @@ public class SignUpActivity extends AppCompatActivity {
         binding.btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (binding.edtSignUpUserName.getText().toString().isEmpty()){
+                    binding.edtSignUpUserName.setError("Enter your name");
+                    return;
+                }
+                if (binding.edtSignUpEmail.getText().toString().isEmpty()){
+                    binding.edtSignUpEmail.setError("Enter your Email");
+                    return;
+                }
+                if (binding.edtSignUpPassword.getText().toString().isEmpty()){
+                    binding.edtSignUpPassword.setError("Fill password");
+                    return;
+                }
                 //for loading
                 progressDialog.show();
 
