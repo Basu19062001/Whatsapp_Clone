@@ -45,6 +45,26 @@ public class GroupChatActivity extends AppCompatActivity {
             }
         });
 
+        binding.imgVideoCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(GroupChatActivity.this, "Video call feature coming soon...", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        binding.imgPhoneCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(GroupChatActivity.this, "Audio call feature coming soon...", Toast.LENGTH_SHORT).show();
+            }
+        });
+        binding.imgThreeDots.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(GroupChatActivity.this, "Clicked on option feature", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final ArrayList<MessageModel> messageModelArrayList = new ArrayList<>();
         final String senderId = FirebaseAuth.getInstance().getUid();

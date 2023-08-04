@@ -47,6 +47,21 @@ public class SignUpActivity extends AppCompatActivity {
         progressDialog.setTitle("Creating account");
         progressDialog.setMessage("We're creating your account");
 
+
+        binding.btnSignUpFacebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(SignUpActivity.this, "Coming soon...", Toast.LENGTH_SHORT).show();
+            }
+        });
+        
+        binding.txtSignUpWithPhone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(SignUpActivity.this, "Coming soon..", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         //onClick listener on sign up button
         binding.btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -60,6 +60,27 @@ public class ChatsDetailsAcitivity extends AppCompatActivity {
             }
         });
 
+
+        binding.imgVideoCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(ChatsDetailsAcitivity.this, "Video call feature coming soon...", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        binding.imgPhoneCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(ChatsDetailsAcitivity.this, "Audio call feature coming soon...", Toast.LENGTH_SHORT).show();
+            }
+        });
+        binding.imgThreeDots.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(ChatsDetailsAcitivity.this, "Clicked on option feature", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         final ArrayList<MessageModel> messageModelArrayList = new ArrayList<>();
         final ChatAdapter chatAdapter = new ChatAdapter(messageModelArrayList, this, receiverId);
 

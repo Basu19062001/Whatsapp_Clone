@@ -57,6 +57,41 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+        binding.txtPrivacyPolicy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(SettingsActivity.this, "Privacy Policy", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        binding.txtAboutUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(SettingsActivity.this, "About Us", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        binding.txtHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(SettingsActivity.this, "Help is clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        binding.txtNotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(SettingsActivity.this, "Notification", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        binding.txtInviteAFriend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(SettingsActivity.this, "Invite a friend", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         //For save user name and about
         binding.btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
